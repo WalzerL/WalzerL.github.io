@@ -139,12 +139,12 @@
   }
 
   h1.name{
-    font-size:26px;
+    font-size:28px;
     font-weight:700;
     letter-spacing:1px;
-    color:var(--fg);
-    margin:0 0 4px;
-    text-shadow:0 0 18px rgba(255,255,255,.08);
+    color:var(--accent);
+    margin:16px 0 4px;
+    text-shadow:0 0 10px rgba(255,46,203,.6), 0 0 30px rgba(255,46,203,.25);
   }
   h1.name .cursor{
     display:inline-block;
@@ -250,24 +250,19 @@
   ::selection{background:var(--accent); color:#0a0a0c;}
 
   @media (min-width:1100px){
-    .crt-frame{max-width:960px; padding:0 24px;}
-    .terminal{padding:44px 56px 52px;}
-    .ascii{font-size:13px;}
-    h1.name{font-size:32px;}
-    body{font-size:16px;}
-    .about p{max-width:68ch;}
+    .crt-frame{max-width:760px; padding:0 24px;}
+    .terminal{padding:32px 36px 40px;}
+    .ascii{font-size:10px;}
+    h1.name{font-size:24px;}
+    body{font-size:14.5px;}
+    .about p{max-width:62ch;}
   }
 
-  @media (max-width:600px){
+  @media (max-width:600px), (max-height:500px) and (orientation:landscape){
     body{align-items:flex-start;}
-    .crt-frame{padding:24px 12px 60px;}
+    .crt-frame{padding:24px 12px 60px; max-width:480px;}
     .terminal{padding:24px 16px 32px;}
-    .ascii{display:none;}
-    h1.name{
-      font-size:34px;
-      color:var(--accent);
-      text-shadow:0 0 10px rgba(255,46,203,.6), 0 0 30px rgba(255,46,203,.3);
-    }
+    h1.name{font-size:32px;}
     footer{flex-direction:column;}
   }
 
@@ -289,15 +284,6 @@
   <div class="terminal">
 
     <div class="line dim">walzerlemonov@root ~ % whoami</div>
-
-    <pre class="ascii">
-██╗    ██╗ █████╗ ██╗     ███████╗███████╗██████╗
-██║    ██║██╔══██╗██║     ╚══███╔╝██╔════╝██╔══██╗
-██║ █╗ ██║███████║██║       ███╔╝ █████╗  ██████╔╝
-██║███╗██║██╔══██║██║      ███╔╝  ██╔══╝  ██╔══██╗
-╚███╔███╔╝██║  ██║███████╗███████╗███████╗██║  ██║
- ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝
-    </pre>
 
     <h1 class="name">lemonovic<span class="cursor"></span></h1>
     <div class="tagline">low-level dev · retro hardware · <span class="accent">game dev на коленке</span></div>
