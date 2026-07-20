@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Скоро...</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #111;
+            color: #fff;
+            font-family: 'Courier New', Courier, monospace;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        #dvd-container {
+            position: absolute;
+            font-size: 3rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            white-space: nowrap;
+            user-select: none;
+            will-change: transform;
+            transition: color 0.2s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="dvd-container">СКОРО</div>
+
+    <script>
+        const container = document.getElementById('dvd-container');
+        
+        let posX = Math.random() * (window.innerWidth - 200);
+        let posY = Math.random() * (window.innerHeight - 50);
+        let speedX = 1.2; 
+        let speedY = 1.2;
+
+        const colors = [
+            '#ff0000', '#00ff00', '#0000ff', 
+            '#ffff00', '#ff00ff', '#00ffff', 
+            '#ff8800', '#00ff88', '#8800ff'
+        ];
+
+        function changeColor() {
+            const currentColor = container.style.color;
+            let newColor = colors[Math.floor(Math.random() * colors.length)];
+            while (newColor === currentColor) {
+                newColor = colors[Math.floor(Math.random() * colors.length)];
+            }
+            container.style.color = newColor;
+        }
+
+        changeColor();
+
+        function update() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const rect = container.getBoundingClientRect();
+
+            posX += speedX;
+            posY += speedY;
+
+            if (posX + rect.width >= width) {
+                posX = width - rect.width;
+                speedX = -speedX;
+                changeColor();
+            } else if (posX <= 0) {
+                posX = 0;
+                speedX = -speedX;
+                changeColor();
+            }
+
+            if (posY + rect.height >= height) {
+                posY = height - rect.height;
+                speedY = -speedY;
+                changeColor();
+            } else if (posY <= 0) {
+                posY = 0;
+                speedY = -speedY;
+                changeColor();
+            }
+
+            container.style.left = posX + 'px';
+            container.style.top = posY + 'px';
+
+            requestAnimationFrame(update);
+        }
+
+        window.addEventListener('resize', () => {
+            const rect = container.getBoundingClientRect();
+            if (posX + rect.width > window.innerWidth) {
+                posX = window.innerWidth - rect.width;
+            }
+            if (posY + rect.height > window.innerHeight) {
+                posY = window.innerHeight - rect.height;
+            }
+        });
+
+        requestAnimationFrame(update);
+    </script>
+</body>
+</html>
